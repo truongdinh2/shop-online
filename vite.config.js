@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import path from 'path'
+import { fileURLToPath, URL } from 'url';
 export default defineConfig({
     plugins: [
         laravel({
@@ -29,7 +29,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@/': path.join(__dirname, '/resources/src/'),
-        },
-    },
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
+    }
 });
