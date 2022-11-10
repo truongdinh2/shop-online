@@ -1,5 +1,7 @@
 <template>
-  <div>adfdsads</div>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
