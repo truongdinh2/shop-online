@@ -1,11 +1,17 @@
 <script setup>
 import { Form, Field } from "vee-validate";
 import * as Yup from "yup";
-// import { useAuthStore } from '@/stores';
+import { useCounterStore } from '@/stores';
+import { storeToRefs } from 'pinia';
+
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required"),
 });
+const store = useCounterStore();
+const {increment} = store;
+const {count, name} = storeToRefs(store);
+console.log(store, name, increment);
 // async function onSubmit(values) {
 //     // const authStore = useAuthStore();
 //     const { username, password } = values;
