@@ -1,17 +1,21 @@
 <script setup>
 import { Form, Field } from "vee-validate";
 import * as Yup from "yup";
-import { useCounterStore } from '@/stores';
-import { storeToRefs } from 'pinia';
+import { useCounterStore } from "@/stores";
+import { storeToRefs } from "pinia";
 
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required"),
 });
 const store = useCounterStore();
-const {increment} = store;
-const {count, name} = storeToRefs(store);
-console.log(store, name, increment);
+
+const { name, doubleCount } = storeToRefs(store);
+setTimeout(() => {
+  store.increment();
+}, 1000);
+const { increment } = store;
+
 // async function onSubmit(values) {
 //     // const authStore = useAuthStore();
 //     const { username, password } = values;
@@ -21,7 +25,7 @@ console.log(store, name, increment);
 
 <template>
   <div class="card m-3">
-    <h4 class="card-header">Login</h4>
+    <h4 class="card-header">Login{{ doubleCount }}</h4>
     <div class="card-body">
       <Form
         @submit="onSubmit"

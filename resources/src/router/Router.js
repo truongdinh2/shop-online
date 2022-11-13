@@ -3,6 +3,7 @@ function page(path) {
     return componentUrl;
 }
 export default [
+    { path: "/:pathMatch(.*)*", name: "NotFound", component: page('NotFound') },
     {
         path: "/",
         name: "Home",
@@ -33,5 +34,14 @@ export default [
         // },
         component: page("Login"),
     },
-    { path: "/:pathMatch(.*)*", name: "NotFound", component: page('NotFound') },
+    {
+        path: "/pinia",
+        name: "pinia",
+        // meta: {
+        //     layout: "AuthLayout",
+        //     requiresAuth: true,
+        //     breadcrumb: "checkpoint_list_dm",
+        // },
+        component: page("pinia"),
+    },
 ];
