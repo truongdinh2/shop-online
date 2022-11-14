@@ -22,7 +22,7 @@ export default [
         //     requiresAuth: true,
         //     breadcrumb: "checkpoint_list_dm",
         // },
-        component: page("Home"),
+        component: page("aTest"),
     },
     {
         path: "/login",
