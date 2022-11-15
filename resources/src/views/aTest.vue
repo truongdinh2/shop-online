@@ -1,16 +1,130 @@
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+<template>
+  <v-container fluid>
+    <v-row no-gutters>
+      <v-col cols="12" md="10">
+        <!-- array of cards -->
+        <v-row class="mt-5 mb-16" no-gutters>
+          <v-col
+            v-for="(product, index) in products"
+            :key="product.id"
+            :index="index"
+            cols="6"
+            sm="3"
+          >
+            <v-card class="ma-2" max-width="200">
+              zdssa
+              <div v-if="product.inventory < 1">
+                <Images
+                  :height="250"
+                  :src="product.image"
+                  :alt="product.name"
+                />
+              </div>
+              <div v-else>
+                <router-link :to="'/detail/' + product.slug">
+                  <Images
+                    :height="250"
+                    :src="product.image"
+                    :alt="product.name"
+                  />
+                </router-link>
+              </div>
+                <v-card-title>{{ product.name }}</v-card-title>
 
-const x = ref(0)
-const y = ref(0)
+              <v-card-text>
+                <v-row align="center" class="mx-0">
+                  <!-- Stars -->
+                  <StarRating :item-id="product.id" :item-rating="3" />
+                </v-row>
 
-function update(event) {
-  x.value = event.pageX
-  y.value = event.pageY
-}
+                <div class="my-6 subtitle-1">
+                  <div v-if="product.inventory < 1">
+                    <h4 class="red text-center white--text">Sold Out</h4>
+                  </div>
+                  <div v-else>
+                    <h4>$ {{ product.price }}</h4>
+                  </div>
+                </div>
 
-onMounted(() => {window.addEventListener('mousemove', update); console.log('first1')})
-onUnmounted(() => {window.removeEventListener('mousemove', update); console.log('first')})
+                <div class="hidden-sm-and-down">
+                  Laborum do dolor occaecat velit id magna pariatur nostrud aute
+                  deserunt sit culpa pariatur dolor. Adipisicing esse
+                  consectetur enim excepteur.
+                </div>
+              </v-card-text>
+
+              <v-divider class="mx-4 hidden-sm-and-down"></v-divider>
+
+              <v-card-actions class="hidden-sm-and-down">
+                <div v-if="product.inventory < 1">
+                  <v-btn
+                    color="deep-purple lighten-2"
+                    disabled
+                    text
+                    :to="'/detail/' + product.slug"
+                  >
+                    Details
+                  </v-btn>
+                </div>
+                <div v-else>
+                  <v-btn
+                    color="deep-purple lighten-2"
+                    text
+                    :to="'/detail/' + product.slug"
+                  >
+                    Details
+                  </v-btn>
+                </div>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12" md="2">
+        <!-- ads area -->
+        <v-card class="mt-5 mb-16 pa-2" outlined tile>
+          <div
+            id="ads"
+            style="background: #1d1f29; padding-top: 60px; text-align: center"
+          ></div>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+import StarRating from "../components/StarRating.vue";
+import Images from "../components/Images.vue";
+import dataFake from "../utils/dataFake";
+export default {
+  components: { StarRating, Images },
+  name: "Home",
+  data() {
+    return {
+      //   products: {
+      //     inventory:0,
+      //     image:'thong-minh.png',
+      //     name:'truong',
+      //     slug:'asd',
+      //     id:1,
+      //     rating:[3],
+      //     price:29998,
+      // },
+    };
+  },
+  created() {
+    this.products = dataFake.products;
+  },
+  mounted() {
+    // this.$store.dispatch('getProducts')
+    console.log(dataFake);
+  },
+  computed: {
+    imageSrc() {
+      // const selectedItem = "thong-minh";
+      return new URL(`../assets/imgs/${this.item}.png`, import.meta.url).href;
+    },
+  },
+};
 </script>
-
-<template>Mouse position is at: {{ x }}, {{ y }}</template>
