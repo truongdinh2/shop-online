@@ -5,7 +5,7 @@
       :max-height="maxHeight"
       :max-width="maxWidth"
       :src="`${myImage}/${src}`"
-      :lazy-src="myImage"
+      :lazy-src="`${myImage}/${src}`"
       alt="alt"
       :contain="contain"
       :transition="transition"
