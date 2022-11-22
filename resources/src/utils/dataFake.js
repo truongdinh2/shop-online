@@ -78,11 +78,21 @@ export default {
     isLogin: false,
     snackbar: {
         show: false,
-        text: "",
-        color: "",
+        text: "truong",
+        color: "red",
 
     },
     isCart: 2,
     subTotal: 200000,
-    cartTotal: '12'
+    cartTotal: '12',
+    tax:120000,
+    grandTotal:130000,
+    first_name: 'nguyen',
+    last_name: 'dinh',
+    address: 'vp',
+    city: 'vp',
+    state: 'vp',
+    zipcode: 12213,
+    phone: 1,
+    email:'dinhsdf@fas.com'
 };

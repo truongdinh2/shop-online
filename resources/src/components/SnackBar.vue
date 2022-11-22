@@ -7,7 +7,7 @@
     right
     top
   >
-    {{ this.snackbar.text }}
+    {{ this.snackbar.text }}sadsad
 
     <template v-slot:action="{ attrs }">
       <v-btn

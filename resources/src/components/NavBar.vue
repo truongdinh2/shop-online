@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-app-bar fixed color="gray-darken-3" dark app>
+    <v-app-bar
+      fixed
+      color="gray-darken-3"
+      image="https://i.picsum.photos/id/849/1920/1080.jpg?hmac=rMqULP8b0wLF6apRoNTFn3oZM2-4b5NxR9Dpplwn5Ts"
+      dark
+      app
+    >
       <router-link to="/">
         <v-img
           alt="Vuetify Logo"
@@ -13,7 +19,7 @@
         </v-img>
       </router-link>
 
-      <v-toolbar-title>Store</v-toolbar-title>
+      <v-toolbar-title class="text-white fw-bold fs-1">Store</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn v-if="isLogin" class="mr-3" elevation="0" to="/profile">
@@ -25,7 +31,7 @@
         <v-icon>mdi-cart</v-icon>
       </v-btn>
 
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary right>
